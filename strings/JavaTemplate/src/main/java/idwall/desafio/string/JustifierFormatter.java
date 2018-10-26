@@ -35,9 +35,7 @@ public class JustifierFormatter extends StringFormatter {
 
     private String justify(String trimmed) {
         int missingSpaces = 40 - trimmed.length();
-//        System.out.println("missingSpaces: " + missingSpaces);
         String[] words = trimmed.split("\\s");
-//        System.out.println("Words: " + words.length);
         StringBuffer sb = new StringBuffer();
         Random randomGenerator = new Random();
         for (int j = 0; j < words.length; j++) {

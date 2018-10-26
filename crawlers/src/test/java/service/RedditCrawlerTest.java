@@ -1,10 +1,10 @@
 package service;
 
-import model.RedditThread;
+import idwall.desafio.crawler.model.RedditThread;
+import idwall.desafio.crawler.service.RedditCrawler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
-import service.RedditCrawler;
 
 import java.io.File;
 import java.io.IOException;

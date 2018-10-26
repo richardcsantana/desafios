@@ -2,6 +2,7 @@ package idwall.desafio.crawler;
 
 import idwall.desafio.crawler.service.RedditConnector;
 import idwall.desafio.crawler.service.RedditCrawler;
+import idwall.desafio.crawler.ui.Gui;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Document;
@@ -16,7 +17,7 @@ public class Main {
     private static final String USER_AGENT = "java:idwall.crawlers:v.0.0.1";
 
     public static void main(String[] args) {
-        Gui gui = Gui();
+        Gui gui = new Gui();
         RedditConnector redditConnector = new RedditConnector(USER_AGENT);
         RedditCrawler redditCrawler = new RedditCrawler();
 
