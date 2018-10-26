@@ -1,6 +1,8 @@
 package idwall.desafio;
 
+import idwall.desafio.string.CharactersFormatter;
 import idwall.desafio.string.IdwallFormatter;
+import idwall.desafio.string.JustifierFormatter;
 import idwall.desafio.string.StringFormatter;
 
 /**
