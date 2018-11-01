@@ -1,0 +1,7 @@
+spring.jackson.property-naming-strategy: SNAKE_CASE
+
+crawler:
+  user-agent: "java:idwall.crawlers:v.0.0.1"
+  bot-token:
+  min-number-of-up-votes: 5000
+  parse-mode: "HTML"

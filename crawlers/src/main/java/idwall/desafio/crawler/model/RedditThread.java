@@ -23,8 +23,7 @@ public class RedditThread {
         if(!comments.isBlank()){
             commentsToString = "https://reddit.com" + comments;
         }
-        return "____________________________________________________________________________________________________________________________________________________" + "\n" +
-                "upvotes='" + upvotes + "',\n" +
+        return "upvotes='" + upvotes + "',\n" +
                 "subredditName='" + subredditName + "',\n" +
                 "title='" + title + "',\n" +
                 "comments='" + commentsToString + "',\n" + // TODO

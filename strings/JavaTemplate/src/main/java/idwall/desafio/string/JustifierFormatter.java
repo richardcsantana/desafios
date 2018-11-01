@@ -2,53 +2,57 @@ package idwall.desafio.string;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class JustifierFormatter extends StringFormatter {
+
+    private CharactersFormatter charactersFormatter = new CharactersFormatter();
+
     @Override
     public String format(String text) {
-        List<String> lines = new ArrayList<>();
-        String[] linesList = text.split("\\n");
+        String formattedText = charactersFormatter.format(text);
+        String[] linesList = formattedText.split("\\n");
+        List<String> newLines = new ArrayList<>();
+
         for (String line : linesList) {
-            String[] stringList = line.split("\\s");
-            List<String> formattedLine = formatInput(stringList);
-            lines.addAll(formattedLine);
+            int missingSpace = 40 - line.trim().length();
+
+            String result;
+            if (missingSpace != 0 && !line.trim().isEmpty()) {
+                result = justifyLine(line, missingSpace);
+            } else {
+                result = line;
+            }
+            newLines.add(result);
         }
-        return String.join("\n", lines);
+        return String.join("\n", newLines);
     }
 
-    private List<String> formatInput(String[] stringList) {
-        List<String> lines = new ArrayList<>();
-        String aux = "";
-        for (String each : stringList) {
-            if (aux.length() + each.length() > 40) {
-                String trimmed = aux.trim();
-                trimmed = justify(trimmed);
-                lines.add(trimmed);
-                aux = "";
+    private String justifyLine(String line, int missingSpace) {
+        String result;
+        String[] words = line.split("\\s");
+
+        int spacePerWord = (int) Math.ceil(missingSpace / (words.length - 1));
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < words.length - 2; i++) {
+            sb.append(words[i]).append(" ");
+            for (int j = 0; j < spacePerWord; j++) {
+                sb.append(" ");
             }
-            aux = aux.concat(each).concat(" ");
         }
-        lines.add(aux.trim());
-        return lines;
+
+        String lastButOneWord = words[words.length - 2];
+        String lastWord = words[words.length - 1];
+
+        missingSpace = 40 - (sb.length() + lastButOneWord.length() + lastWord.length());
+        sb.append(lastButOneWord);
+        for (int i = 0; i < missingSpace; i++) {
+            sb.append(" ");
+        }
+        sb.append(lastWord);
+        result = sb.toString();
+        return result;
     }
 
-    private String justify(String trimmed) {
-        int missingSpaces = 40 - trimmed.length();
-        String[] words = trimmed.split("\\s");
-        StringBuffer sb = new StringBuffer();
-        Random randomGenerator = new Random();
-        for (int j = 0; j < words.length; j++) {
-            int eachWord = words.length - j / missingSpaces;
-            sb.append(words[j]).append(" ");
-            if (missingSpaces > 0) {
-                int randomNumber = randomGenerator.nextInt(missingSpaces);
-                missingSpaces -= randomNumber;
-                for (int i = 0; i < randomNumber; i++) {
-                    sb.append(" ");
-                }
-            }
-        }
-        return sb.toString().trim();
-    }
 }
